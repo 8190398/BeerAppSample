@@ -1,15 +1,8 @@
-# Stage 1
-
-FROM node:21-alpine as build-step
-
-RUN mkdir -p /app
-
+FROM node:lts-alpine
 WORKDIR /app
-
-COPY package.json /app
-
-RUN npm install
-
-COPY . /app
-
-RUN npm run build --prod
+RUN npm install -g @angular/cli@13
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+EXPOSE 4200
+CMD ["ng", "serve", "--host", "0.0.0.0"]
