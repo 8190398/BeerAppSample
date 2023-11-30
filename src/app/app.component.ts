@@ -11,4 +11,27 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'BeerApp';
+
+  beerObject: any;
+  isLoading = false;
+  beerArray = ['Rodenbach','Weissbier']
+  
+  constructor() {}
+
+  ngOnInit(): void {
+    this.getRandomBeer();
+  }
+
+  getRandomBeer() {
+    this.isLoading = true;
+    let beer = Math.floor( Math.random() * 2 )
+
+    fetch('https://my-microcksinstall-microcks.apps.xnkpeyx0.canadacentral.aroapp.io/rest/Beer+Catalog+API/0.99/beer/'+this.beerArray[beer]).then(data => {
+      return data.json();
+      })
+      .then(beerObject => {
+        this.beerObject = beerObject;
+        this.isLoading = false;
+    });
+  }
 }
