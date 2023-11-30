@@ -30,6 +30,7 @@ export class AppComponent {
       return data.json();
       })
       .then(beerObject => {
+        console.log(beerObject)
         this.beerObject = beerObject;
         this.isLoading = false;
     });
