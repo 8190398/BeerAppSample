@@ -25,7 +25,7 @@ export class AppComponent {
   getRandomBeer() {
     this.isLoading = true;
     let beer = Math.floor( Math.random() * 2 )
-
+    alert('https://my-microcksinstall-microcks.apps.xnkpeyx0.canadacentral.aroapp.io/rest/Beer+Catalog+API/0.99/beer/'+this.beerArray[beer])
     fetch('https://my-microcksinstall-microcks.apps.xnkpeyx0.canadacentral.aroapp.io/rest/Beer+Catalog+API/0.99/beer/'+this.beerArray[beer]).then(data => {
       return data.json();
       })
